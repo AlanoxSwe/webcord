@@ -1,12 +1,14 @@
 const botDb = {
   settings: {
     prefix: '!',
+    welcome: 'Welcome to the server,',
+    lock: false,
   },
   commands: [
     {
       command: 'test',
       reply: 'works!',
-      enabled: true,
+      enabled: false,
     },
     {
       command: 'hello',
@@ -28,4 +30,8 @@ const addCommand = (obj) => {
   botDb.commands.push(obj);
 };
 
-module.exports = { addCommand, botDb };
+const updateSettings = (obj) => {
+  botDb.settings = obj;
+};
+
+module.exports = { addCommand, updateSettings, botDb };

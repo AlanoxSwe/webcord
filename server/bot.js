@@ -6,25 +6,62 @@ const client = new Discord.Client();
 // msg.channel.send('');
 // msg.author.username
 
+const sendBroadcast = (msg) => {
+  const channel = client.channels.cache.find((chnl) => chnl.name === 'allmänt');
+  channel.send(msg);
+};
+
+const sendAlert = (title, msg) => {
+  const embed = new Discord.MessageEmbed()
+    .setTitle(title)
+    .setColor(0xff0000)
+    .setDescription(msg);
+  const channel = client.channels.cache.find((chnl) => chnl.name === 'allmänt');
+  channel.send(embed);
+};
+
+const sendPoll = async (question, option1, option2) => {
+  const embed = new Discord.MessageEmbed()
+    .setTitle(`NEW POLL: ${question}`)
+    .setColor('YELLOW')
+    .setDescription(`
+     👍: ${option1}
+     
+     👎: ${option2}
+    `);
+  const channel = client.channels.cache.find((chnl) => chnl.name === 'allmänt');
+  const msgEmbed = await channel.send(embed);
+  await msgEmbed.react('👍');
+  await msgEmbed.react('👎');
+};
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   console.log(botDb);
 });
 
-client.on('message', (msg) => {
+client.on('message', async (msg) => {
   botDb.commands.forEach((c) => {
-    if (msg.content.toLowerCase() === botDb.settings.prefix + c.command.toLowerCase()) {
-      msg.reply(c.reply);
+    if (c.enabled) {
+      if (msg.content.toLowerCase() === botDb.settings.prefix + c.command.toLowerCase()) {
+        msg.reply(c.reply);
+      }
     }
   });
-  // if (msg.content === botDb.specialCommands[0].clear.command) {
-  //   const clear = async () => {
-  //     msg.delete();
-  //     const fetched = await msg.channel.messages.fetch({ limit: 99 });
-  //     msg.channel.bulkDelete(fetched);
-  //   };
-  //   clear();
-  // }
+  botDb.specialCommands.forEach((sc) => {
+    if (sc.enabled) {
+      if (msg.content.toLowerCase() === botDb.settings.prefix + sc.command.toLowerCase()) {
+        if (sc.type === 'clear') {
+          const clear = async () => {
+            msg.delete();
+            const fetched = await msg.channel.messages.fetch({ limit: 99 });
+            msg.channel.bulkDelete(fetched);
+          };
+          clear();
+        }
+      }
+    }
+  });
 });
 
 client.on('message', (message) => {
@@ -40,7 +77,9 @@ client.on('message', (message) => {
 client.on('guildMemberAdd', (member) => {
   const channel = member.guild.channels.cache.find((ch) => ch.name === 'allmänt');
   if (!channel) return;
-  channel.send(`Welcome to the server, ${member}`);
+  channel.send(`${botDb.settings.welcome} ${member}`);
 });
 
-module.exports = client;
+module.exports = {
+  client, sendBroadcast, sendAlert, sendPoll,
+};

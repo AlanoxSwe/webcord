@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const CurrentSettings = () => (
+const CurrentSettings = ({ settings }) => (
   <div className="card mb-4">
     <div className="card-body">
       <p>
@@ -15,11 +16,13 @@ const CurrentSettings = () => (
                 When a new user joins, the bot will say:
                 <p>
                   <code>
-                    Welcome %user%!
+                    {settings.welcome}
+                    {' '}
+                    %user%!
                   </code>
                 </p>
               </p>
-              <a href="/" className="card-link float-right">Configure</a>
+              <Link to="/settings" className="card-link float-right">Configure</Link>
             </div>
           </div>
         </div>
@@ -31,12 +34,12 @@ const CurrentSettings = () => (
                 Commands will only be executed with the set prefix:
                 <p>
                   <code>
-                    !
+                    {settings.prefix}
                     {'{command}'}
                   </code>
                 </p>
               </p>
-              <a href="/" className="card-link float-right">Configure</a>
+              <Link to="/settings" className="card-link float-right">Configure</Link>
             </div>
           </div>
         </div>
@@ -48,11 +51,11 @@ const CurrentSettings = () => (
                 Your server lock status is currently:
                 <p>
                   <code>
-                    Open to all
+                    {!settings.lock ? 'Open to all' : 'Locked'}
                   </code>
                 </p>
               </p>
-              <a href="/" className="card-link float-right">Configure</a>
+              <Link to="/settings" className="card-link float-right">Configure</Link>
             </div>
           </div>
         </div>
@@ -68,7 +71,7 @@ const CurrentSettings = () => (
                   </code>
                 </p>
               </p>
-              <a href="/" className="card-link float-right">Configure</a>
+              <a href="http://discord.com" className="card-link float-right">Configure in Discord</a>
             </div>
           </div>
         </div>

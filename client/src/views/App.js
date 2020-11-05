@@ -6,6 +6,7 @@ import {
 import Dashboard from './Pages/Dashboard';
 import Commands from './Pages/Commands';
 import '../styles/styles.css';
+import Settings from './Pages/Settings';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Switch>
         <Route exact path="/dashboard" render={props => <Dashboard {...props} />} />
         <Route exact path="/commands" render={props => <Commands {...props} />} />
+        <Route exact path="/settings" render={props => <Settings {...props} />} />
         <Redirect exact from="/" to="/dashboard" />
         <Redirect to="/404" />
       </Switch>

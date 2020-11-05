@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CommandTable from './panel/CommandTable';
-import fetchCommands from '../../services/botConnect';
+import { fetchCommands } from '../../services/botConnect';
+import AddCommands from './panel/AddCommands';
 
 const Panel = () => {
   const [commands, setCommands] = useState([]);
@@ -19,15 +20,13 @@ const Panel = () => {
     <main>
       <div className="container-fluid">
         <h1 className="mt-4">Commands</h1>
+        <AddCommands />
         <div className="card mb-4">
           <div className="card-body">
             <p>
               Chat commands
             </p>
             <CommandTable commands={commands} />
-            <button type="button" className="btn btn-success float-right">
-              Add commands
-            </button>
           </div>
         </div>
       </div>
