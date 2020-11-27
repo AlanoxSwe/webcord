@@ -21,9 +21,7 @@ const botDb = {
   ],
 };
 
-const addCommand = (obj) => {
-  botDb.commands.push(obj);
-};
+const addCommand = (obj) => botDb.commands.push(obj);
 
 const updateSettings = (obj) => {
   botDb.settings = obj;

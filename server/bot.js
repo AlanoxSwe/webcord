@@ -1,10 +1,8 @@
+/* eslint-disable no-console */
 const Discord = require('discord.js');
 const { botDb } = require('./data/botData');
 
 const client = new Discord.Client();
-
-// msg.channel.send('');
-// msg.author.username
 
 const sendBroadcast = (msg) => {
   const channel = client.channels.cache.find((chnl) => chnl.name === 'allmänt');
