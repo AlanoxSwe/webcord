@@ -9,6 +9,15 @@ export const fetchCommands = async () => {
   }
 };
 
+export const fetchSpecialCommands = async () => {
+  try {
+    const { data } = await axios.get('http://localhost:3001/commands/special');
+    return data;
+  } catch (err) {
+    return null;
+  }
+};
+
 export const fetchSettings = async () => {
   try {
     const { data } = await axios.get('http://localhost:3001/settings');
@@ -69,6 +78,28 @@ export const addCommand = async (command, reply) => {
       command,
       reply,
       enabled: true,
+    });
+    return data;
+  } catch (err) {
+    return null;
+  }
+};
+
+export const toggleCommand = async command => {
+  try {
+    const { data } = await axios.post('http://localhost:3001/commands/disable', {
+      command,
+    });
+    return data;
+  } catch (err) {
+    return null;
+  }
+};
+
+export const toggleSpecialCommand = async command => {
+  try {
+    const { data } = await axios.post('http://localhost:3001/commands/special/disable', {
+      command,
     });
     return data;
   } catch (err) {

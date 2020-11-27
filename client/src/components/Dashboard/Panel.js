@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import CommandTable from './panel/CommandTable';
+import CommandTable from '../common/CommandTable';
 import { fetchCommands, fetchSettings } from '../../services/botConnect';
 import CurrentSettings from './panel/CurrentSettings';
 import QuickActions from './panel/QuickActions';

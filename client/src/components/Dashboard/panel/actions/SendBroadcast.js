@@ -10,7 +10,7 @@ const SendBroadcast = () => {
 
   const handleBcSubmit = e => {
     e.preventDefault();
-    setBc();
+    setBc('');
     sendBroadcast(bc);
   };
 

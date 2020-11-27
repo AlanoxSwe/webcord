@@ -58,7 +58,7 @@ const EditSettings = ({ settings }) => {
                     <option value=".">.</option>
                     <option value="/">/</option>
                     <option value="?">?</option>
-                    <option value="">None</option>
+                    <option value=" ">None</option>
                   </select>
                   <button type="button" className="btn btn-success mt-2 btn-block" onClick={e => handlePrefixSubmit(e)}>Save</button>
                 </div>

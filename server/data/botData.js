@@ -1,15 +1,10 @@
 const botDb = {
   settings: {
     prefix: '!',
-    welcome: 'Welcome to the server,',
+    welcome: 'Welcome, %user%',
     lock: false,
   },
   commands: [
-    {
-      command: 'test',
-      reply: 'works!',
-      enabled: false,
-    },
     {
       command: 'hello',
       reply: 'world!',

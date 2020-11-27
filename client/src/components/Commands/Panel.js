@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import CommandTable from './panel/CommandTable';
-import { fetchCommands } from '../../services/botConnect';
+import CommandTable from '../common/CommandTable';
+import { fetchCommands, fetchSpecialCommands } from '../../services/botConnect';
 import AddCommands from './panel/AddCommands';
+import SpecialCommandTable from '../common/SpecialCommandTable';
 
 const Panel = () => {
   const [commands, setCommands] = useState([]);
+  const [specialCommands, setSpecialCommands] = useState([]);
 
   const getCommands = async () => {
     const data = await fetchCommands();
@@ -12,8 +14,15 @@ const Panel = () => {
     return setCommands([]);
   };
 
+  const getSpecialCommands = async () => {
+    const data = await fetchSpecialCommands();
+    if (data) return setSpecialCommands(data);
+    return setSpecialCommands([]);
+  };
+
   useEffect(() => {
     getCommands();
+    getSpecialCommands();
   }, []);
 
   return (
@@ -27,6 +36,14 @@ const Panel = () => {
               Chat commands
             </p>
             <CommandTable commands={commands} />
+          </div>
+        </div>
+        <div className="card mb-4">
+          <div className="card-body">
+            <p>
+              Special commands
+            </p>
+            <SpecialCommandTable commands={specialCommands} />
           </div>
         </div>
       </div>

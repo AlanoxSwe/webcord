@@ -17,8 +17,6 @@ const CurrentSettings = ({ settings }) => (
                 <p>
                   <code>
                     {settings.welcome}
-                    {' '}
-                    %user%!
                   </code>
                 </p>
               </p>

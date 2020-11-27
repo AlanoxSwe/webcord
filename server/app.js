@@ -16,6 +16,10 @@ app.use(bodyParser.json());
 
 client.login(DISCORD_KEY);
 
+const getCommand = (special, command) => {
+  if (!special) return botDb.commands.find((item) => item.command === command);
+  return botDb.specialCommands.find((item) => item.command === command);
+};
 const createCommand = (command, reply) => ({
   command,
   reply,
@@ -73,5 +77,19 @@ app.route('/poll')
     const { question, option1, option2 } = req.body;
     sendPoll(question, option1, option2);
     res.status(200).end();
+  });
+
+app.route('/commands/disable')
+  .post((req, res) => {
+    const command = getCommand(false, req.body.command);
+    command.enabled = !command.enabled;
+    res.status(200).json(botDb);
+  });
+
+app.route('/commands/special/disable')
+  .post((req, res) => {
+    const command = getCommand(true, req.body.command);
+    command.enabled = !command.enabled;
+    res.status(200).json(botDb);
   });
 module.exports = app;
