@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';
 import Dashboard from './Pages/Dashboard';
 import Commands from './Pages/Commands';
-import '../styles/styles.css';
 import Settings from './Pages/Settings';
 
 function App() {
