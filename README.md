@@ -10,7 +10,7 @@ Clone the repository
 ```bash
 git clone https://github.com/AlanoxSwe/webcord.git
 ```
-Install packages in the webcord directory
+Install packages in both the client and server directories
 ```bash
 npm install
 ```
