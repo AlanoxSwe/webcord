@@ -16,7 +16,7 @@ npm install
 ```
 Store your Discord API-key in an environment variable, i.e.:
 ```
-API_KEY=<your-api-key>
+DISCORD_KEY=<your-api-key>
 ```
 
 ## License
