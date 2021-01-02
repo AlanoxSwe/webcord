@@ -1,4 +1,5 @@
 # Webcord
+<img src="webcord.png" width="200" height="200" />
 Webcord is a Discord bot with a web-based GUI and configuration
 
 ## Contributing
